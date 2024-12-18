@@ -1,5 +1,6 @@
 const express = require('express');
 const axios = require('axios');
+const cors = require('cors'); // استيراد مكتبة CORS
 
 const app = express();
 const PORT = 3000;
@@ -7,6 +8,9 @@ const PORT = 3000;
 // المتغيرات الحساسة
 const CLIENT_ID = 'eyJ1aWQiOiJtRTU2d2hJVDM2VjhUcnZRVzNuSE95NjdpdWZ5Ukd5bSIsImNsaWVudF9pZCI6IjMifQ==';
 const API_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJtRTU2d2hJVDM2VjhUcnZRVzNuSE95NjdpdWZ5Ukd5bSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzMyODAxNDQyfQ.KE_GsLap0Xk4OGEV8YFUEUSaEGm7IBASwsfkrCW83j8';
+
+// Middleware لإعداد CORS
+app.use(cors()); // تمكين CORS لكل الطلبات
 
 // Middleware لقراءة بيانات الـ Body
 app.use(express.json());
@@ -36,7 +40,7 @@ app.post('/send-message', async (req, res) => {
     }
 });
 
-// Start the server
+// تشغيل السيرفر
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
